@@ -1,0 +1,28 @@
+{% extends 'base_generic.html' %}
+
+
+{% block content %}
+  <div class="w-full max-w-xs mx-auto mt-20">
+    <form method="post" class="bg-white shadow-md rounded mt-2 px-2 pb-2 pt-2">
+      {% csrf_token %}
+      <div class="mb-4">
+        <h2 class="block text-gray-700 text-lg font-bold mb-2">Вход в систему</h2>
+      </div>
+      {{ form.as_p }}
+      <div class="mb-4">
+        <label class="inline-flex items-center mb-2">
+          <input type="checkbox" name="remember_me" class="form-checkbox text-teal-500">
+          <span class="ml-2 text-gray-700">Запомнить меня</span>
+        </label>
+      </div>
+      <div class="flex items-center justify-between">
+        <button class="bg-teal-500 hover:bg-teal-700 text-white font-bold px-2 py-2 rounded" type="submit">
+          Войти
+        </button>
+      </div>
+      <div class="mt-4 text-center">
+        <a href="{% url 'signup' %}" class="text-blue-500 hover:text-blue-700">Не имеете аккаунта? Зарегистрироваться</a>
+      </div>
+    </form>
+  </div>
+{% endblock %}

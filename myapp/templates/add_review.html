@@ -1,0 +1,30 @@
+{% extends 'base_generic.html' %}
+
+{% block content %}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/easymde/dist/easymde.min.css">
+<script src="https://cdn.jsdelivr.net/npm/easymde/dist/easymde.min.js"></script>
+
+<div class="container mx-auto p-6">
+    <h2 class="text-2xl font-semibold mb-4">Написать рецензию для книги "{{ book.title }}"</h2>
+    <form method="POST">
+        {% csrf_token %}
+        <div class="mb-4">
+            {{ form.rating.label_tag }}
+            {{ form.rating }}
+        </div>
+        <div class="mb-4">
+            {{ form.text.label_tag }}
+            <textarea name="text" id="review-textarea" class="border border-gray-300 rounded px-4 py-2 w-full">{{ form.text.value }}</textarea>
+        </div>
+        <button type="submit" class="bg-blue-500 text-white py-2 px-4 rounded">Сохранить</button>
+        {% if error %}
+            <div class="text-red-500 mt-4">{{ error }}</div>
+        {% endif %}
+    </form>
+</div>
+
+<script>
+    const easyMDE = new EasyMDE({ element: document.getElementById('review-textarea') });
+</script>
+
+{% endblock %}

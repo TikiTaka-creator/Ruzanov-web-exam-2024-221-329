@@ -1,0 +1,47 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}{% endblock %}</title>
+    <link href="{% static 'css/tailwind.css' %}" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <nav class="flex items-center justify-between pl-2 flex-wrap bg-teal-500 p-6">
+            <div class="flex items-center flex-shrink-0 text-white mr-2">
+                <a href="/" class="font-semibold text-xl tracking-tight">Электронная библиотека</a>
+            </div>
+            <div class="block lg:hidden">
+                <button class="flex items-center px-3 py-2 border rounded text-teal-200 border-teal-400 hover:text-white hover:border-white">
+                    <svg class="fill-current h-3 w-3" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                        <title>Menu</title>
+                        <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"/>
+                    </svg>
+                </button>
+            </div>
+            <div class="w-full block flex-grow lg:flex lg:items-center lg:w-auto justify-end">
+                <div class="text-sm w-full block flex-grow lg:flex lg:items-center lg:w-auto justify-end mr-2">
+                    {% if user.is_authenticated %}
+                        <span class="text-teal-200 mr-2">{{ profile.first_name }} {{ profile.middle_name }} {{ profile.last_name }}</span>
+                        <a href="accounts/login/" class="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white">
+                            Выйти
+                        </a>
+                    {% else %}
+                        <a href="accounts/login/" class="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4">
+                            Авторизация
+                        </a>
+                        <a href="signup/" class="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white">
+                            Регистрация
+                        </a>
+                    {% endif %}
+                </div>
+            </div>
+        </nav> 
+    </header>
+    <div id="content">
+        {% block content %}{% endblock %}
+    </div>
+</body>
+</html>

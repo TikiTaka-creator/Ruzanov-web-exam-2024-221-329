@@ -1,0 +1,54 @@
+{% extends 'base_generic.html' %}
+
+{% block content %}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/easymde/dist/easymde.min.css">
+<script src="https://cdn.jsdelivr.net/npm/easymde/dist/easymde.min.js"></script>
+
+<div class="container mx-auto p-6">
+    <h2 class="text-2xl font-semibold mb-4">Добавить/Редактировать книгу</h2>
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="mb-4">
+            {{ form.title.label }}
+            <input type="text" name="title" value="{{ form.title.value }}" class="border border-gray-300 rounded px-4 py-2 w-full" required>
+        </div>
+        <div class="mb-4">
+            {{ form.author.label }}
+            <input type="text" name="author" value="{{ form.author.value }}" class="border border-gray-300 rounded px-4 py-2 w-full" required>
+        </div>
+        <div class="mb-4">
+            {{ form.genres.label }}
+            {{ form.genres }}
+        </div>
+        <div class="mb-4">
+            {{ form.pages.label }}
+            <input type="number" name="pages" value="{{ form.pages.value }}" class="border border-gray-300 rounded px-4 py-2 w-full" required>
+        </div>
+        <div class="mb-4">
+            {{ form.year.label }}
+            <input type="number" name="year" value="{{ form.year.value }}" class="border border-gray-300 rounded px-4 py-2 w-full" required>
+        </div>
+        <div class="mb-4">
+            {{ form.publisher.label }}
+            <input type="text" name="publisher" value="{{ form.publisher.value }}" class="border border-gray-300 rounded px-4 py-2 w-full" required>
+        </div>
+        <div class="mb-4">
+            {{ form.description.label }}
+            <textarea name="description" id="my-textarea" class="border border-gray-300 rounded px-4 py-2 w-full">{{ form.description.value }}</textarea>
+        </div>
+        <div class="mb-4">
+            <label for="cover" class="block text-gray-700">Обложка книги:</label>
+            <input type="file" name="cover" id="cover" class="border border-gray-300 rounded px-4 py-2 w-full" {% if book %}disabled{% endif %}>
+        </div>
+        <button type="submit" class="bg-blue-500 text-white py-2 px-4 rounded">Сохранить</button>
+        {% if error %}
+            <div class="text-red-500 mt-4">{{ error }}</div>
+        {% endif %}
+    </form>
+</div>
+
+<script>
+    const easyMDE = new EasyMDE({ element: document.getElementById('my-textarea') });
+</script>
+
+{% endblock %}

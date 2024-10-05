@@ -1,0 +1,24 @@
+{
+  "name": "smartsprout",
+  "version": "1.0.0",
+  "description": "",
+  "main": "tailwind.config.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tailwindcss build src/tailwind.css -o static/css/tailwind.css",
+    "watch": "tailwindcss build src/tailwind.css -o static/css/tailwind.css --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Sh1mpi/SmartSprout.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Sh1mpi/SmartSprout/issues"
+  },
+  "homepage": "https://github.com/Sh1mpi/SmartSprout#readme",
+  "dependencies": {
+    "tailwindcss": "^3.3.2"
+  }
+}
